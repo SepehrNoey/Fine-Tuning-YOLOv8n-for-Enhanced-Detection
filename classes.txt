@@ -1,0 +1,5 @@
+car
+pedestrian
+bycicle
+truck
+bicycle
