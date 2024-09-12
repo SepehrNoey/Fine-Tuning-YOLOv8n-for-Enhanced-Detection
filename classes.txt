@@ -1,5 +1,4 @@
 car
 pedestrian
-bycicle
-truck
 bicycle
+truck

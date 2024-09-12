@@ -1,0 +1,5 @@
+train: "D:\\AUT\\Vision-Projects\\More Accurate Object Counter\\train"
+val: "D:\\AUT\\Vision-Projects\\More Accurate Object Counter\\val"
+
+nc: 4
+names: ["car", "pedestrian", "bicycle", "truck"]
