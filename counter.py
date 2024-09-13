@@ -1,7 +1,6 @@
 import cv2
 from ultralytics import YOLO
 from ultralytics.solutions import object_counter
-import cvzone
 
 modelName = "fine_tuned_yolov8n"
 videoName = "2"
@@ -52,7 +51,7 @@ while cap.isOpened():
         print("Video frame is empty or video processing has been successfully completed.")
         break
 
-    tracks = model.track(im0, persist=True, show=False, classes=classes_to_count)
+    tracks = model.predict(im0, show=False, classes=classes_to_count, conf=0.3, verbose=False)
 
     # resetting counts
     class_counts = {cls: 0 for cls in classes_to_count}
