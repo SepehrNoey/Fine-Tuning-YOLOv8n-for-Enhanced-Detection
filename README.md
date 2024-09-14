@@ -8,7 +8,7 @@ Below is a comparison video between the pre-trained YOLOv8n model and the fine-t
 - **Fine-Tuned YOLOv8n**: Detects more cars and pedestrians in crowded scenes.
 - **Pre-Trained YOLOv8n**: Misses several objects in similar scenes.
 
-https://drive.google.com/file/d/1nQ3-9h_tgfVtqEc8pDOVioEN-1_fweHu/view?usp=sharing
+https://drive.usercontent.google.com/download?id=1nQ3-9h_tgfVtqEc8pDOVioEN-1_fweHu&export=download&authuser=0
 
 ## Dataset and Labeling
 The custom dataset was created by gathering images of crowded scenes and labeling the following object classes using the [labelImg](https://github.com/tzutalin/labelImg) tool:
