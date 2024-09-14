@@ -2,8 +2,8 @@ import cv2
 from ultralytics import YOLO
 from ultralytics.solutions import object_counter
 
-modelName = "fine_tuned_yolov8n"
-videoName = "2"
+modelName = "yolov8n"
+videoName = "10"
 resVideoName = modelName + f"_video{videoName}"
 
 model = YOLO(f'{modelName}.pt')

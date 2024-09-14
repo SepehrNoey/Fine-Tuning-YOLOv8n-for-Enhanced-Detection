@@ -1,6 +1,7 @@
 # Fine-Tuning YOLOv8 for Enhanced Detection in Crowded Scenes
 
-This project involves fine-tuning the YOLOv8n model on a custom dataset of images featuring crowded scenes with more cars and pedestrians. The aim was to assess the ability to train a pre-trained model further for specific tasks, such as improving its ability to detect and count vehicles and pedestrians accurately in such environments. By gathering a targeted dataset and training the model for 100 epochs, the results show significant improvements in object detection compared to the pre-trained model, particularly in busy scenes. However, some misclassifications or overcounting of one object occur and the model must be trained for more accurate results and further academic purposes.
+This project fine-tunes the YOLOv8n model on a custom dataset of crowded scenes with more cars and pedestrians. The goal was to improve the model's ability to detect and count vehicles and pedestrians in busy environments. After training for 100 epochs, the model showed some improvements over the pre-trained version in specific settings, though some misclassifications and overcounting still occur, requiring further training for more accuracy.
+
 
 ## Demo
 Below is a comparison video between the pre-trained YOLOv8n model and the fine-tuned model on a custom dataset of crowded scenes:
@@ -8,7 +9,19 @@ Below is a comparison video between the pre-trained YOLOv8n model and the fine-t
 - **Fine-Tuned YOLOv8n**: Detects more cars and pedestrians in crowded scenes.
 - **Pre-Trained YOLOv8n**: Misses several objects in similar scenes.
 
-https://private-user-images.githubusercontent.com/77605118/367538454-0e86ffbb-c58d-4ab3-a196-653a1b2dd929.mp4?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjYzNDExOTksIm5iZiI6MTcyNjM0MDg5OSwicGF0aCI6Ii83NzYwNTExOC8zNjc1Mzg0NTQtMGU4NmZmYmItYzU4ZC00YWIzLWExOTYtNjUzYTFiMmRkOTI5Lm1wND9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA5MTQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwOTE0VDE5MDgxOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTJmYzY3MDk4YmJmMmFlZWY0ZjBhZGQ5YTcwODQ0M2QxNWJmNGNmNjYwN2U5MGM3OTdmODQ5YWFhOGE3YWJlYjEmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.b7j7Xr74ljYHeBQGUOGdqzBW2WHmUXJkTLvGJKPAbx8
+#### Pedestrian Zones
+|Fine-Tuned Model Output|Pre-trained Model Output|
+|-----|----|
+|<video src="https://github.com/user-attachments/assets/d5a87dde-a8d8-409a-ae0f-a3c77579c238">  | <video src="https://github.com/user-attachments/assets/14ca8d30-90cc-4ca1-a2b5-76a802f51cd4">|
+|<video src="https://github.com/user-attachments/assets/0ed02d50-47aa-4f16-87a3-1339663defcf">  | <video src="https://github.com/user-attachments/assets/6bbbe0b6-d864-49a1-9e4b-50a9196768a2">|
+
+#### Traffic Scenes
+|Fine-Tuned Model Output|Pre-trained Model Output|
+|-----|----|
+|<video src="https://github.com/user-attachments/assets/dca43fc3-1296-4f6d-a0b1-8bcd0e5829b1">  | <video src="https://github.com/user-attachments/assets/a00cea11-64cc-4178-8596-b82c729fa727">|
+|<video src="https://github.com/user-attachments/assets/d65c3017-af23-445f-a3bf-12be7ddbfcd2">  | <video src="https://github.com/user-attachments/assets/35719e19-47f0-4e80-94d7-163dfb5c6142">|
+|<video src="https://github.com/user-attachments/assets/0722f36f-3e49-4760-aaec-6d0af848fb83">  | <video src="https://github.com/user-attachments/assets/58f43290-9269-4cd4-872a-50b56a7d1afe">|
+
 
 ## Dataset and Labeling
 The custom dataset was created by gathering images of crowded scenes and labeling the following object classes using the [labelImg](https://github.com/tzutalin/labelImg) tool:
@@ -21,31 +34,14 @@ The custom dataset was created by gathering images of crowded scenes and labelin
 This step allowed for accurate fine-tuning of the YOLOv8n model to improve detection performance on these specific categories.
 
 ## Model Fine-Tuning
-The pre-trained YOLOv8n model was fine-tuned on the custom dataset for **100 epochs**. This process significantly improved its accuracy in crowded scenes, particularly in detecting cars and pedestrians.
+The pre-trained YOLOv8n model was fine-tuned on the custom dataset for **100 epochs**. This process improved its accuracy in crowded scenes, particularly in detecting pedestrians. As shown in the chart, the overall loss has reduced over the epochs and led to improved accuracy. Code of this part can be seen at `trainer.py`
 
-![Training Chart](training_chart_image_link_here)
+![results](https://github.com/user-attachments/assets/cda4ec1e-10ad-4a2e-9e40-fc253c896977)
 
-The training chart shows:
-
-- **Loss reduction over epochs**: Clear reduction in both classification and bounding box regression loss.
-- **Accuracy improvement**: The model's accuracy improves steadily during training, particularly for the car and pedestrian categories.
 
 ## Object Counting
-After fine-tuning, I used the tools provided by the [Ultralytics YOLO](https://github.com/ultralytics/yolov8) library to compare object counts in video sequences. The fine-tuned model was tested on crowded scenes and showed significant improvements in detecting and counting cars and people.
+After fine-tuning the model, some tools provided by the [Ultralytics YOLO](https://github.com/ultralytics/ultralytics) library to count object in video sequences have been used. The code of this part can be seen at `counter.py`.
 
-### Comparison Results
-
-| Model                 | Total Cars Counted | Total People Counted |
-|-----------------------|--------------------|----------------------|
-| **Pre-trained YOLOv8n** | X cars             | X people             |
-| **Fine-tuned YOLOv8n**  | Y cars             | Y people             |
-
-## Conclusion
-The fine-tuned YOLOv8n model performs much better in crowded scenes, accurately detecting and counting objects like cars and pedestrians compared to the pre-trained model. This project demonstrates the impact of custom training on real-world scenes and the potential improvements in object detection accuracy through targeted fine-tuning.
-
-## How to Run
-
-1. Clone this repository.
-2. Install the necessary dependencies using:
-   ```bash
-   pip install -r requirements.txt
+### Models Checkpoints
+- **fine_tuned_yolov8n.pt**: This is the best checkpoint of the fine-tuned model. Weights and other arguments can be found at `runs/detect/train`
+- **yolov8n.pt**: This is the base checkpoint used for fine-tuning on custom dataset, which is available at [Ultralytics YOLO](https://github.com/ultralytics/ultralytics).
